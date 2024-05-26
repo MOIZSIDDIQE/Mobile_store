@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import inquirer from "inquirer";
 let array = [];
 let value = true;
@@ -18,6 +19,19 @@ while (value) {
             type: "list",
             message: "select which rom would like to add in your phone",
             choices: ["32GB", "64GB", "128GB", "256GB", "512GB"],
+        }, {
+            name: "color",
+            type: "list",
+            message: "select which color would like to add in your phone",
+            choices: [
+                chalk.bgRed.bold("      "),
+                chalk.bgYellow.bold("      "),
+                chalk.bgWhite.bold("      "),
+                chalk.bgBlue.bold("      "),
+                chalk.bgGreen.bold("      "),
+                chalk.bgGrey.bold("      "),
+                chalk.bgBlack.("      ")
+            ]
         },
         {
             name: "addmore",
@@ -28,8 +42,12 @@ while (value) {
     let pricePhone = 0;
     let priceRam = 0;
     let priceMemory = 0;
+    let Color = [];
     if (mobile.phone === "Oppo" || "Vivo" || "Iphone" || "Samsung" || "Huawei" || "Tecno") {
         pricePhone += 8000;
+    }
+    else {
+        pricePhone += 22000;
     }
     if (mobile.ram === "2GB") {
         priceRam += 3000;
@@ -61,8 +79,26 @@ while (value) {
     else if (mobile.memory === "512GB") {
         priceMemory += 30000;
     }
+    if (mobile.color === chalk.bgRed.bold("      ")) {
+        Color.push("Red color");
+    }
+    else if (mobile.color === chalk.bgYellow.bold("      ")) {
+        Color.push("Yellow color");
+    }
+    else if (mobile.color === chalk.bgWhite.bold("      ")) {
+        Color.push("White color");
+    }
+    else if (mobile.color === chalk.bgBlue.bold("      ")) {
+        Color.push("Blue color");
+    }
+    else if (mobile.color === chalk.bgGrey.bold("      ")) {
+        Color.push("Grey color");
+    }
+    else if (mobile.color === chalk.bgGreen.bold("      ")) {
+        Color.push("Green color");
+    }
     let total = pricePhone + priceRam + priceMemory;
-    array.push(`brand = ${mobile.phone} , RAM = ${mobile.ram}, Memory = ${mobile.memory}, price = ${total}`);
+    array.push(`brand = ${mobile.phone} , RAM = ${mobile.ram} , Memory = ${mobile.memory} , price = ${total} , color = ${Color}`);
     value = mobile.addmore;
     console.log(array);
 }
